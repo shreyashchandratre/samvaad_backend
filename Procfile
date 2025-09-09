@@ -1,1 +1,1 @@
-web: gunicorn main:app
+web: gunicorn "mybot:create_app()"
