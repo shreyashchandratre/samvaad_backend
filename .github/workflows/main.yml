@@ -1,0 +1,21 @@
+name: Sync to Hugging Face hub
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Push to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global credential.helper store
+          git remote add space https://huggingface.co/spaces/shreyashchandratre09/samvaad_chatbots
+          git push --force space main
