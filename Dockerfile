@@ -4,11 +4,14 @@ FROM python:3.10-slim
 # Set the working directory to /app
 WORKDIR /app
 
-# Set environment variable for the transformers cache to a writable directory
-ENV TRANSFORMERS_CACHE=/app/cache
-
 # Copy the current directory contents into the container at /app
 COPY . /app
+
+# Explicitly create a writable directory for the Hugging Face cache
+RUN mkdir -p /app/cache && chmod -R 777 /app/cache
+
+# Set environment variable for the transformers cache
+ENV TRANSFORMERS_CACHE=/app/cache
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
