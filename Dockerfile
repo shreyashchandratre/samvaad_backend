@@ -4,6 +4,9 @@ FROM python:3.10-slim
 # Set the working directory to /app
 WORKDIR /app
 
+# Set environment variable for the transformers cache to a writable directory
+ENV TRANSFORMERS_CACHE=/app/cache
+
 # Copy the current directory contents into the container at /app
 COPY . /app
 
