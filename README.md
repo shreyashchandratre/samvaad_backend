@@ -4,7 +4,7 @@ emoji: 💬
 colorFrom: pink
 colorTo: purple
 sdk: docker
-app_port: 7860
+app_port: 5000
 ---
 
 # Samvaad Chatbot Backend
