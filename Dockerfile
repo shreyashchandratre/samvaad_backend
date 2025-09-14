@@ -17,6 +17,9 @@ ENV TRANSFORMERS_CACHE=/app/cache
 RUN pip install "numpy<2.0"
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Pre-download Hugging Face model at build time
+RUN python -c "from transformers import pipeline; pipeline('text-classification', model='bhadresh-savani/distilbert-base-uncased-emotion')"
+
 # Make port 7860 available to the world outside this container
 EXPOSE 7860
 
