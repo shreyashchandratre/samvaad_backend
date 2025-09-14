@@ -13,7 +13,8 @@ RUN mkdir -p /app/cache && chmod -R 777 /app/cache
 # Set environment variable for the transformers cache
 ENV TRANSFORMERS_CACHE=/app/cache
 
-# Install any needed packages specified in requirements.txt
+# Install numpy first (force <2.0), then other dependencies
+RUN pip install "numpy<2.0"
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 7860 available to the world outside this container
