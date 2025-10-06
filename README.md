@@ -1,26 +1,49 @@
----
-title: Samvaad Chatbot Backend
-emoji: 💬
-colorFrom: pink
-colorTo: purple
-sdk: docker
-app_port: 5000
----
+# Samvaad Chatbot Backend 💬
 
-# Samvaad Chatbot Backend
-
-This is a backend API for an emotion-aware chatbot deployed on Hugging Face Spaces using a custom Docker container.
+A lightweight API for an emotion-aware chatbot that uses Hugging Face's `distilbert-base-uncased-emotion` model to classify emotions and respond accordingly. The application is containerized using Docker for easy deployment.
 
 ## Features
-* **Emotion-aware responses:** The chatbot uses a Hugging Face model to classify user emotions and respond accordingly.
-* **API Endpoints:** Provides a REST API for chat interactions, conversation history, and a health check.
-* **Lightweight Deployment:** Designed to run efficiently on free-tier cloud services.
+
+* Emotion-aware responses** using Hugging Face's emotion classification model.
+* REST API endpoints** for chat interaction, conversation history, and health check.
+* Lightweight and easy deployment** via Docker.
 
 ## API Endpoints
-* `/api/chat` (POST)
-* `/api/chat/history` (GET)
-* `/api/chat/reset` (POST)
-* `/api/health` (GET)
 
-## How It Works
-The chatbot is a Flask API that loads a `distilbert-base-uncased-emotion` model using the Hugging Face `transformers` library. The entire application runs inside a Docker container, making it easy to deploy on any platform.
+* POST `/api/chat`: Sends a message and gets an emotion-aware response.
+* GET `/api/chat/history`: Retrieves the conversation history.
+* POST `/api/chat/reset`: Resets the conversation.
+* GET `/api/health`: Health check for the backend service.
+
+## Deployment with Docker
+
+1. Build Docker image:
+
+   ```bash
+   docker build -t samvaad-chatbot-backend .
+   ```
+2. Run Docker container:
+
+   ```bash
+   docker run -p 5000:7860 samvaad-chatbot-backend
+   ```
+
+   The app will be available at `http://localhost:5000`.
+
+## Requirements
+
+* Flask==2.3.3
+* Flask-CORS==4.0.0
+* Transformers==4.35.0
+* Torch>=2.0.0
+* Numpy==1.24.3
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## License
+
+MIT License. See the [LICENSE] file for details.
